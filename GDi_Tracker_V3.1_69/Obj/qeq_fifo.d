@@ -1,0 +1,16 @@
+.\obj\qeq_fifo.o: QPC\qf\qeq_fifo.c
+.\obj\qeq_fifo.o: QPC\qf\qf_pkg.h
+.\obj\qeq_fifo.o: .\QPC\port\qf_port.h
+.\obj\qeq_fifo.o: .\QPC\port\qep_port.h
+.\obj\qeq_fifo.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\obj\qeq_fifo.o: .\QPC\inc\qep.h
+.\obj\qeq_fifo.o: .\QPC\inc\qevt.h
+.\obj\qeq_fifo.o: .\QPC\port\qk_port.h
+.\obj\qeq_fifo.o: .\QPC\inc\qk.h
+.\obj\qeq_fifo.o: .\QPC\inc\qequeue.h
+.\obj\qeq_fifo.o: .\QPC\inc\qmpool.h
+.\obj\qeq_fifo.o: .\QPC\inc\qpset.h
+.\obj\qeq_fifo.o: .\QPC\inc\qf.h
+.\obj\qeq_fifo.o: .\QPC\port\qs_port.h
+.\obj\qeq_fifo.o: .\QPC\inc\qs.h
+.\obj\qeq_fifo.o: .\QPC\inc\qassert.h

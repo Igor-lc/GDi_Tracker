@@ -1,0 +1,43 @@
+
+
+
+#ifndef _GPS_HW_H
+#define _GPS_HW_H
+
+#define GPS_UART USART2
+#define GPS_UART_GPIO  GPIOA
+#define GPS_UART_TX_PinSource11 GPIO_PinSource2
+#define GPS_UART_TX_Pin              GPIO_Pin_2
+#define GPS_UART_RX_PinSource11 GPIO_PinSource3
+#define GPS_UART_RX_Pin              GPIO_Pin_3
+
+#define GPS_POWER_GPIO_PORT         GPIOC
+#define GPS_POWER_PIN               GPIO_Pin_13
+#define GPS_POWER_ON()              GPS_POWER_GPIO_PORT->BSRR = GPS_POWER_PIN
+#define GPS_POWER_OFF()             GPS_POWER_GPIO_PORT->BRR = GPS_POWER_PIN
+
+#define GPS_STDBYN_PIN            GPIO_Pin_2
+#define GPS_STDBYN_GPIO_PORT      GPIOC
+#define GPS_STDBYN_HIGH()         GPS_STDBYN_GPIO_PORT->BSRR = GPS_STDBYN_PIN
+#define GPS_STDBYN_LOW()          GPS_STDBYN_GPIO_PORT->BRR = GPS_STDBYN_PIN
+
+
+#define GPS_NRESET_PIN            GPIO_Pin_2
+#define GPS_NRESET_GPIO_PORT      GPIOF
+#define GPS_NRESET_HIGH()         GPS_NRESET_GPIO_PORT->BSRR = GPS_NRESET_PIN
+#define GPS_NRESET_LOW()          GPS_NRESET_GPIO_PORT->BRR = GPS_NRESET_PIN
+
+
+/*#define SIM68_STDBYN_PIN            GPIO_Pin_2
+#define SIM68_STDBYN_GPIO_PORT      GPIOC
+#define SIM68_STDBYN_GPIO_CLK       RCC_AHBPeriph_GPIOC
+#define SIM68_STDBYN_HIGH()         SIM68_STDBYN_GPIO_PORT->BSRR = SIM68_STDBYN_PIN
+#define SIM68_STDBYN_LOW()          SIM68_STDBYN_GPIO_PORT->BRR = SIM68_STDBYN_PIN
+
+#define SIM68_NRESET_PIN            GPIO_Pin_0
+#define SIM68_NRESET_GPIO_PORT      GPIOC
+#define SIM68_NRESET_GPIO_CLK       RCC_AHBPeriph_GPIOC
+#define SIM68_NRESET_HIGH()         SIM68_NRESET_GPIO_PORT->BSRR = SIM68_NRESET_PIN
+#define SIM68_NRESET_LOW()          SIM68_NRESET_GPIO_PORT->BRR = SIM68_NRESET_PIN*/
+
+#endif

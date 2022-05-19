@@ -1,0 +1,26 @@
+syntax: glob
+*.tds
+*.~*
+*.obj
+*.cgl
+*.crf
+*.o
+*.axf
+*.tra
+*.__i
+*.d
+*._1i
+*._2i
+*.lnp
+*.sct
+*.iex
+*.fed
+*.l1p
+*.l2p
+*.map
+*.bak
+*.TMP
+*.dat
+*.bin
+*.hex
+*.htm

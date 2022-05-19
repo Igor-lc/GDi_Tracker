@@ -1,0 +1,15 @@
+.\obj\qs_byte.o: QPC\qs\qs_byte.c
+.\obj\qs_byte.o: QPC\qs\qs_pkg.h
+.\obj\qs_byte.o: .\QPC\port\qs_port.h
+.\obj\qs_byte.o: .\QPC\port\qf_port.h
+.\obj\qs_byte.o: .\QPC\port\qep_port.h
+.\obj\qs_byte.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\obj\qs_byte.o: .\QPC\inc\qep.h
+.\obj\qs_byte.o: .\QPC\inc\qevt.h
+.\obj\qs_byte.o: .\QPC\port\qk_port.h
+.\obj\qs_byte.o: .\QPC\inc\qk.h
+.\obj\qs_byte.o: .\QPC\inc\qequeue.h
+.\obj\qs_byte.o: .\QPC\inc\qmpool.h
+.\obj\qs_byte.o: .\QPC\inc\qpset.h
+.\obj\qs_byte.o: .\QPC\inc\qf.h
+.\obj\qs_byte.o: .\QPC\inc\qs.h

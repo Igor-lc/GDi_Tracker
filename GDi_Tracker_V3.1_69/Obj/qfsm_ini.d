@@ -1,0 +1,16 @@
+.\obj\qfsm_ini.o: QPC\qep\qfsm_ini.c
+.\obj\qfsm_ini.o: QPC\qep\qep_pkg.h
+.\obj\qfsm_ini.o: .\QPC\port\qep_port.h
+.\obj\qfsm_ini.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\obj\qfsm_ini.o: .\QPC\inc\qep.h
+.\obj\qfsm_ini.o: .\QPC\inc\qevt.h
+.\obj\qfsm_ini.o: .\QPC\port\qs_port.h
+.\obj\qfsm_ini.o: .\QPC\port\qf_port.h
+.\obj\qfsm_ini.o: .\QPC\port\qk_port.h
+.\obj\qfsm_ini.o: .\QPC\inc\qk.h
+.\obj\qfsm_ini.o: .\QPC\inc\qequeue.h
+.\obj\qfsm_ini.o: .\QPC\inc\qmpool.h
+.\obj\qfsm_ini.o: .\QPC\inc\qpset.h
+.\obj\qfsm_ini.o: .\QPC\inc\qf.h
+.\obj\qfsm_ini.o: .\QPC\inc\qs.h
+.\obj\qfsm_ini.o: .\QPC\inc\qassert.h

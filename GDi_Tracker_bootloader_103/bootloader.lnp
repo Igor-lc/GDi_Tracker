@@ -1,0 +1,13 @@
+--cpu Cortex-M3
+".\startup_stm32f10x_hd.o"
+".\stm32f10x_flash.o"
+".\stm32f10x_gpio.o"
+".\stm32f10x_rcc.o"
+".\bsp.o"
+".\main.o"
+".\core_cm3.o"
+".\system_stm32f10x.o"
+--library_type=microlib --strict --scatter ".\bootloader.sct"
+--summary_stderr --info summarysizes --map --xref --callgraph --symbols
+--info sizes --info totals --info unused --info veneers
+--list ".\bootloader.map" -o .\bootloader.axf

@@ -1,0 +1,371 @@
+
+
+
+ARM Macro Assembler    Page 1 
+
+
+    1 00000000         ;*******************************************************
+                       **********************
+    2 00000000         ; Product: QK port to ARM Cortex-M (M0,M0+,M1,M3,M4,M4F)
+                       , ARM-Keil assembler
+    3 00000000         ; Last Updated for Version: 5.1.0
+    4 00000000         ; Date of the Last Update:  Sep 19, 2013
+    5 00000000         ;
+    6 00000000         ;                    Q u a n t u m     L e a P s
+    7 00000000         ;                    ---------------------------
+    8 00000000         ;                    innovating embedded systems
+    9 00000000         ;
+   10 00000000         ; Copyright (C) 2002-2013 Quantum Leaps, LLC. All rights
+                        reserved.
+   11 00000000         ;
+   12 00000000         ; This program is open source software: you can redistri
+                       bute it and/or
+   13 00000000         ; modify it under the terms of the GNU General Public Li
+                       cense as published
+   14 00000000         ; by the Free Software Foundation, either version 2 of t
+                       he License, or
+   15 00000000         ; (at your option) any later version.
+   16 00000000         ;
+   17 00000000         ; Alternatively, this program may be distributed and mod
+                       ified under the
+   18 00000000         ; terms of Quantum Leaps commercial licenses, which expr
+                       essly supersede
+   19 00000000         ; the GNU General Public License and are specifically de
+                       signed for
+   20 00000000         ; licensees interested in retaining the proprietary stat
+                       us of their code.
+   21 00000000         ;
+   22 00000000         ; This program is distributed in the hope that it will b
+                       e useful,
+   23 00000000         ; but WITHOUT ANY WARRANTY; without even the implied war
+                       ranty of
+   24 00000000         ; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. S
+                       ee the
+   25 00000000         ; GNU General Public License for more details.
+   26 00000000         ;
+   27 00000000         ; You should have received a copy of the GNU General Pub
+                       lic License
+   28 00000000         ; along with this program. If not, see <http://www.gnu.o
+                       rg/licenses/>.
+   29 00000000         ;
+   30 00000000         ; Contact information:
+   31 00000000         ; Quantum Leaps Web sites: http://www.quantum-leaps.com
+   32 00000000         ;                          http://www.state-machine.com
+   33 00000000         ; e-mail:                  info@quantum-leaps.com
+   34 00000000         ;*******************************************************
+                       **********************
+   35 00000000         
+   36 00000000                 AREA             |.text|, CODE, READONLY
+   37 00000000                 THUMB
+   38 00000000         
+   39 00000000                 PRESERVE8                    ; this code preserv
+                                                            es 8-byte stack ali
+                                                            gnment
+   40 00000000         
+   41 00000000                 EXPORT           QK_init
+
+
+
+ARM Macro Assembler    Page 2 
+
+
+   42 00000000                 EXPORT           PendSV_Handler ; CMSIS-complian
+                                                            t PendSV exception 
+                                                            name
+   43 00000000                 EXPORT           SVC_Handler ; CMSIS-compliant S
+                                                            VC exception name
+   44 00000000         
+   45 00000000                 IMPORT           QK_schedPrio_ ; external refere
+                                                            nce
+   46 00000000                 IMPORT           QK_sched_   ; external referenc
+                                                            e
+   47 00000000         
+   48 00000000         
+   49 00000000         ;*******************************************************
+                       **********************
+   50 00000000         ; The QK_init function sets the priorities of PendSV and
+                        SVCall exceptions
+   51 00000000         ; to 0xFF and 0x00, respectively. The function internall
+                       y disables
+   52 00000000         ; interrupts, but restores the original interrupt lock b
+                       efore exit.
+   53 00000000         ;*******************************************************
+                       **********************
+   54 00000000         QK_init
+   55 00000000 F3EF 8010       MRS              r0,PRIMASK  ; store the state o
+                                                            f the PRIMASK in r0
+                                                            
+   56 00000004 B672            CPSID            i           ; disable interrupt
+                                                            s (set PRIMASK)
+   57 00000006         
+   58 00000006 4915            LDR              r1,=0xE000ED18 ; System Handler
+                                                             Priority Register
+   59 00000008 688A            LDR              r2,[r1,#8]  ; load the System 1
+                                                            2-15 Priority Regis
+                                                            ter
+   60 0000000A 23FF            MOVS             r3,#0xFF
+   61 0000000C 041B            LSLS             r3,r3,#16
+   62 0000000E 431A            ORRS             r2,r3       ; set PRI_14 (PendS
+                                                            V) to 0xFF
+   63 00000010 608A            STR              r2,[r1,#8]  ; write the System 
+                                                            12-15 Priority Regi
+                                                            ster
+   64 00000012 684A            LDR              r2,[r1,#4]  ; load the System 8
+                                                            -11 Priority Regist
+                                                            er
+   65 00000014 021B            LSLS             r3,r3,#8
+   66 00000016 439A            BICS             r2,r3       ; set PRI_11 (SVCal
+                                                            l) to 0x00
+   67 00000018 604A            STR              r2,[r1,#4]  ; write the System 
+                                                            8-11 Priority Regis
+                                                            ter
+   68 0000001A         
+   69 0000001A F380 8810       MSR              PRIMASK,r0  ; restore the origi
+                                                            nal PRIMASK
+   70 0000001E 4770            BX               lr          ; return to the cal
+                                                            ler
+   71 00000020         
+   72 00000020         
+   73 00000020         ;*******************************************************
+                       **********************
+
+
+
+ARM Macro Assembler    Page 3 
+
+
+   74 00000020         ; The PendSV_Handler exception handler is used for handl
+                       ing asynchronous
+   75 00000020         ; preemption in QK. The use of the PendSV exception is t
+                       he recommended
+   76 00000020         ; and most efficient method for performing context switc
+                       hes with ARM Cortex-M.
+   77 00000020         ;
+   78 00000020         ; The PendSV exception should have the lowest priority i
+                       n the whole system
+   79 00000020         ; (0xFF, see QK_init). All other exceptions and interrup
+                       ts should have higher
+   80 00000020         ; priority. For example, for NVIC with 2 priority bits a
+                       ll interrupts and
+   81 00000020         ; exceptions must have numerical value of priority lower
+                        than 0xC0. In this
+   82 00000020         ; case the interrupt priority levels available to your a
+                       pplications are (in
+   83 00000020         ; the order from the lowest urgency to the highest urgen
+                       cy): 0x80, 0x40, 0x00.
+   84 00000020         ;
+   85 00000020         ; Also, *all* ISRs in the QK application must trigger th
+                       e PendSV exception
+   86 00000020         ; by calling the QK_ISR_EXIT() macro.
+   87 00000020         ;
+   88 00000020         ; Due to tail-chaining and its lowest priority, the Pend
+                       SV exception will be
+   89 00000020         ; entered immediately after the exit from the *last* nes
+                       ted interrupt (or
+   90 00000020         ; exception). In QK, this is exactly the time when the Q
+                       K scheduler needs to
+   91 00000020         ; check for the asynchronous preemption.
+   92 00000020         ;*******************************************************
+                       **********************
+   93 00000020         PendSV_Handler
+   94 00000020 B500            PUSH             {lr}        ; push the exceptio
+                                                            n lr (EXC_RETURN)
+   95 00000022         
+   96 00000022                 IF               {TARGET_ARCH_THUMB} == 3 ; Cort
+                                                            ex-M0/M0+/M1 (v6-M,
+                                                             v6S-M)?
+   99 00000022 203F            MOVS             r0,#(0xFF:SHR:2) ; Keep in sync
+                                                            h with QF_BASEPRI i
+                                                            n qf_port.h!
+  100 00000024 F380 8811       MSR              BASEPRI,r0  ; disable interrupt
+                                                            s at processor leve
+                                                            l
+  101 00000028                 ENDIF
+  102 00000028         
+  103 00000028 F7FF FFFE       BL               QK_schedPrio_ ; check if we hav
+                                                            e preemption
+  104 0000002C 2800            CMP              r0,#0       ; is prio == 0 ?
+  105 0000002E D103            BNE.N            scheduler   ; if prio != 0, bra
+                                                            nch to scheduler
+  106 00000030         
+  107 00000030                 IF               {TARGET_ARCH_THUMB} == 3 ; Cort
+                                                            ex-M0/M0+/M1 (v6-M,
+                                                             v6S-M)?
+  110 00000030 F380 8811       MSR              BASEPRI,r0  ; enable interrupts
+                                                             (r0 == 0 at this p
+
+
+
+ARM Macro Assembler    Page 4 
+
+
+                                                            oint)
+  111 00000034                 ENDIF
+  112 00000034         
+  113 00000034 BC01            POP              {r0}        ; pop the EXC_RETUR
+                                                            N into r0 (low regi
+                                                            ster)
+  114 00000036 4700            BX               r0          ; exception-return 
+                                                            to the task
+  115 00000038         
+  116 00000038         scheduler
+  117 00000038 B081            SUB              sp,sp,#4    ; align the stack t
+                                                            o 8-byte boundary
+  118 0000003A 2301            MOVS             r3,#1
+  119 0000003C 061B            LSLS             r3,r3,#24   ; r3:=(1 << 24), se
+                                                            t the T bit  (new x
+                                                            psr)
+  120 0000003E 4A08            LDR              r2,=QK_sched_ ; address of the 
+                                                            QK scheduler   (new
+                                                             pc)
+  121 00000040 4908            LDR              r1,=svc_ret ; return address af
+                                                            ter the call (new l
+                                                            r)
+  122 00000042 B40E            PUSH             {r1-r3}     ; push xpsr,pc,lr
+  123 00000044 B084            SUB              sp,sp,#(4*4) ; don't care for r
+                                                            12,r3,r2,r1
+  124 00000046 B401            PUSH             {r0}        ; push the prio arg
+                                                            ument        (new r
+                                                            0)
+  125 00000048 2006            MOVS             r0,#0x6
+  126 0000004A 43C0            MVNS             r0,r0       ; r0 := ~0x6 == 0xF
+                                                            FFFFFF9
+  127 0000004C 4700            BX               r0          ; exception-return 
+                                                            to the scheduler
+  128 0000004E         
+  129 0000004E         svc_ret
+  130 0000004E                 IF               {TARGET_ARCH_THUMB} == 3 ; Cort
+                                                            ex-M0/M0+/M1 (v6-M,
+                                                             v6S-M)?
+  133 0000004E 2000            MOVS             r0,#0
+  134 00000050 F380 8811       MSR              BASEPRI,r0  ; enable interrupts
+                                                             (remove BASEPRI)
+  135 00000054                 ENDIF
+  136 00000054         
+  137 00000054                 IF               {FPU} != "SoftVFP" ; If softwar
+                                                            e FPU not used...
+  142                          ENDIF
+  143 00000054         
+  144 00000054 DF00            SVC              #0          ; SV exception retu
+                                                            rns to the preempte
+                                                            d task
+  145 00000056         
+  146 00000056         
+  147 00000056         ;*******************************************************
+                       **********************
+  148 00000056         ; The SVC_Handler exception handler is used for returnin
+                       g back to the
+  149 00000056         ; interrupted task. The SVCall exception simply removes 
+                       its own interrupt
+  150 00000056         ; stack frame from the stack and returns to the preempte
+
+
+
+ARM Macro Assembler    Page 5 
+
+
+                       d task using the
+  151 00000056         ; interrupt stack frame that must be at the top of the s
+                       tack.
+  152 00000056         ;*******************************************************
+                       **********************
+  153 00000056         SVC_Handler
+  154 00000056 B009            ADD              sp,sp,#(9*4) ; remove one 8-reg
+                                                            ister exception fra
+                                                            me
+  155 00000058         ; plus the "aligner" from the stack
+  156 00000058 BC01            POP              {r0}        ; pop the original 
+                                                            EXC_RETURN into r0
+  157 0000005A 4700            BX               r0          ; return to the pre
+                                                            empted task
+  158 0000005C         
+  159 0000005C                 ALIGN                        ; make sure the END
+                                                             is properly aligne
+                                                            d
+  160 0000005C                 END
+              E000ED18 
+              00000000 
+              00000000 
+Command Line: --debug --xref --diag_suppress=9931 --cpu=Cortex-M3 --apcs=interw
+ork --depend=.\obj\qk_port.d -o.\obj\qk_port.o -IC:\Keil_v5\ARM\RV31\INC -IC:\K
+eil_v5\ARM\CMSIS\Include -IC:\Keil_v5\ARM\Inc\ST\STM32F10x --predefine="__UVISI
+ON_VERSION SETA 514" --list=.\lst\qk_port.lst QPC\port\qk_port.s
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+Relocatable symbols
+
+.text 00000000
+
+Symbol: .text
+   Definitions
+      At line 36 in file QPC\port\qk_port.s
+   Uses
+      None
+Comment: .text unused
+PendSV_Handler 00000020
+
+Symbol: PendSV_Handler
+   Definitions
+      At line 93 in file QPC\port\qk_port.s
+   Uses
+      At line 42 in file QPC\port\qk_port.s
+Comment: PendSV_Handler used once
+QK_init 00000000
+
+Symbol: QK_init
+   Definitions
+      At line 54 in file QPC\port\qk_port.s
+   Uses
+      At line 41 in file QPC\port\qk_port.s
+Comment: QK_init used once
+SVC_Handler 00000056
+
+Symbol: SVC_Handler
+   Definitions
+      At line 153 in file QPC\port\qk_port.s
+   Uses
+      At line 43 in file QPC\port\qk_port.s
+Comment: SVC_Handler used once
+scheduler 00000038
+
+Symbol: scheduler
+   Definitions
+      At line 116 in file QPC\port\qk_port.s
+   Uses
+      At line 105 in file QPC\port\qk_port.s
+Comment: scheduler used once
+svc_ret 0000004E
+
+Symbol: svc_ret
+   Definitions
+      At line 129 in file QPC\port\qk_port.s
+   Uses
+      At line 121 in file QPC\port\qk_port.s
+Comment: svc_ret used once
+6 symbols
+
+
+
+ARM Macro Assembler    Page 1 Alphabetic symbol ordering
+External symbols
+
+QK_schedPrio_ 00000000
+
+Symbol: QK_schedPrio_
+   Definitions
+      At line 45 in file QPC\port\qk_port.s
+   Uses
+      At line 103 in file QPC\port\qk_port.s
+Comment: QK_schedPrio_ used once
+QK_sched_ 00000000
+
+Symbol: QK_sched_
+   Definitions
+      At line 46 in file QPC\port\qk_port.s
+   Uses
+      At line 120 in file QPC\port\qk_port.s
+Comment: QK_sched_ used once
+2 symbols
+341 symbols in table

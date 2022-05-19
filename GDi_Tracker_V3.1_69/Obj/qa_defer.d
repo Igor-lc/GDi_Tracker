@@ -1,0 +1,16 @@
+.\obj\qa_defer.o: QPC\qf\qa_defer.c
+.\obj\qa_defer.o: QPC\qf\qf_pkg.h
+.\obj\qa_defer.o: .\QPC\port\qf_port.h
+.\obj\qa_defer.o: .\QPC\port\qep_port.h
+.\obj\qa_defer.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\obj\qa_defer.o: .\QPC\inc\qep.h
+.\obj\qa_defer.o: .\QPC\inc\qevt.h
+.\obj\qa_defer.o: .\QPC\port\qk_port.h
+.\obj\qa_defer.o: .\QPC\inc\qk.h
+.\obj\qa_defer.o: .\QPC\inc\qequeue.h
+.\obj\qa_defer.o: .\QPC\inc\qmpool.h
+.\obj\qa_defer.o: .\QPC\inc\qpset.h
+.\obj\qa_defer.o: .\QPC\inc\qf.h
+.\obj\qa_defer.o: .\QPC\port\qs_port.h
+.\obj\qa_defer.o: .\QPC\inc\qs.h
+.\obj\qa_defer.o: .\QPC\inc\qassert.h

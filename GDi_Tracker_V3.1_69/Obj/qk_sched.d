@@ -1,0 +1,15 @@
+.\obj\qk_sched.o: QPC\qk\qk_sched.c
+.\obj\qk_sched.o: QPC\qk\qk_pkg.h
+.\obj\qk_sched.o: .\QPC\port\qf_port.h
+.\obj\qk_sched.o: .\QPC\port\qep_port.h
+.\obj\qk_sched.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\obj\qk_sched.o: .\QPC\inc\qep.h
+.\obj\qk_sched.o: .\QPC\inc\qevt.h
+.\obj\qk_sched.o: .\QPC\port\qk_port.h
+.\obj\qk_sched.o: .\QPC\inc\qk.h
+.\obj\qk_sched.o: .\QPC\inc\qequeue.h
+.\obj\qk_sched.o: .\QPC\inc\qmpool.h
+.\obj\qk_sched.o: .\QPC\inc\qpset.h
+.\obj\qk_sched.o: .\QPC\inc\qf.h
+.\obj\qk_sched.o: .\QPC\port\qs_port.h
+.\obj\qk_sched.o: .\QPC\inc\qs.h

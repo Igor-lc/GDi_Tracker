@@ -1,0 +1,17 @@
+.\obj\rs485.o: RS485\rs485.c
+.\obj\rs485.o: RS485\rs485.h
+.\obj\rs485.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\obj\rs485.o: .\QPC\inc\qp_port.h
+.\obj\rs485.o: .\QPC\port\qf_port.h
+.\obj\rs485.o: .\QPC\port\qep_port.h
+.\obj\rs485.o: .\QPC\inc\qep.h
+.\obj\rs485.o: .\QPC\inc\qevt.h
+.\obj\rs485.o: .\QPC\port\qk_port.h
+.\obj\rs485.o: .\QPC\inc\qk.h
+.\obj\rs485.o: .\QPC\inc\qequeue.h
+.\obj\rs485.o: .\QPC\inc\qmpool.h
+.\obj\rs485.o: .\QPC\inc\qpset.h
+.\obj\rs485.o: .\QPC\inc\qf.h
+.\obj\rs485.o: .\QPC\inc\qassert.h
+.\obj\rs485.o: .\QPC\port\qs_port.h
+.\obj\rs485.o: .\QPC\inc\qs.h

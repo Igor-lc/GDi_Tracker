@@ -1,0 +1,16 @@
+.\obj\qmp_get.o: QPC\qf\qmp_get.c
+.\obj\qmp_get.o: QPC\qf\qf_pkg.h
+.\obj\qmp_get.o: .\QPC\port\qf_port.h
+.\obj\qmp_get.o: .\QPC\port\qep_port.h
+.\obj\qmp_get.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+.\obj\qmp_get.o: .\QPC\inc\qep.h
+.\obj\qmp_get.o: .\QPC\inc\qevt.h
+.\obj\qmp_get.o: .\QPC\port\qk_port.h
+.\obj\qmp_get.o: .\QPC\inc\qk.h
+.\obj\qmp_get.o: .\QPC\inc\qequeue.h
+.\obj\qmp_get.o: .\QPC\inc\qmpool.h
+.\obj\qmp_get.o: .\QPC\inc\qpset.h
+.\obj\qmp_get.o: .\QPC\inc\qf.h
+.\obj\qmp_get.o: .\QPC\port\qs_port.h
+.\obj\qmp_get.o: .\QPC\inc\qs.h
+.\obj\qmp_get.o: .\QPC\inc\qassert.h
