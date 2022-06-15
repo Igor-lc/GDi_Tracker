@@ -1,6 +1,5 @@
-Исходный код и документация GPS трекера "GDi_Tracker". Поддерживается всеми популярными сервисами, я подключаю на Wialon:
+Исходный код и документация GPS трекера "GDi_Tracker". Demo вход:
 https://gps.gps-plus.com.ua/
-Demo вход:
 Django
 Django
 
