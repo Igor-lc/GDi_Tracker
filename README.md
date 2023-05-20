@@ -2,4 +2,4 @@
 
 Пользователь и пароль: Django
 
-Статья клиента: https://gps-monitoring.com.ua/ru/gps-treker-gdi-opyt-ispolzovanija/
+Статья: https://gps-monitoring.com.ua/ru/gps-treker-gdi-opyt-ispolzovanija/
