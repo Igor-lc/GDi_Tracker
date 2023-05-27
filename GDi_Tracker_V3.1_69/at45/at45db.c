@@ -1,5 +1,3 @@
-
-
 #include <stm32f10x.h>
 #include "memory_spi.h"
 #include "at45db.h"
