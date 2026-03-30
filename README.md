@@ -5,4 +5,5 @@ Username: gps
 Password: server
 
 https://gps-monitoring.com.ua/ru/novye-gps-trekery-ukrainskogo-proizvodstva-gdi/
+
 https://gps-monitoring.com.ua/ru/gps-treker-gdi-opyt-ispolzovanija/
