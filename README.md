@@ -4,7 +4,7 @@ You can see the operation of GDi_Tracker here: https://gdi-tracker.org
 
 Username: gps
 
-Password: server
+Password: gps
 
 https://gps-monitoring.com.ua/ru/novye-gps-trekery-ukrainskogo-proizvodstva-gdi/
 
