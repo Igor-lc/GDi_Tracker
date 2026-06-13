@@ -1,4 +1,4 @@
-Source code and documentation for the GDI Tracker GPS platform.
+Source code and documentation for the GDi Tracker GPS platform.
 
 See how GDi Tracker works: https://gdi-tracker.org
 (login: gps / gps)
