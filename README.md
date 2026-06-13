@@ -1,11 +1,7 @@
-The source code and documentation of the GPS tracker "GDi_Tracker" :) 
+Source code and documentation for the GDI Tracker GPS platform.
 
 See how GDi Tracker works: https://gdi-tracker.org
-
-Username: gps
-
-Password: gps
+(login: gps / gps)
 
 https://gps-monitoring.com.ua/ru/novye-gps-trekery-ukrainskogo-proizvodstva-gdi/
-
 https://gps-monitoring.com.ua/ru/gps-treker-gdi-opyt-ispolzovanija/
