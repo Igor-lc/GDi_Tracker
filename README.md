@@ -1,6 +1,6 @@
 The source code and documentation of the GPS tracker "GDi_Tracker" :) 
 
-See how GDI Tracker works: https://gdi-tracker.org
+See how GDi Tracker works: https://gdi-tracker.org
 
 Username: gps
 
